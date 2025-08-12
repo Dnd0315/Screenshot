@@ -1,0 +1,9 @@
+# Base
+pyautogui>=0.9.53
+
+# Dépendances macOS (accès Cocoa via PyObjC)
+pyobjc-core>=7.0
+pyobjc>=7.0
+
+# Capture d’écran / imagerie
+Pillow>=8.0.0

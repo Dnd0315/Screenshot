@@ -1,6 +1,8 @@
 import pyautogui
 import datetime
+import time
 import os
+import tkinter as tk
 
 def take_screenshot(save_dir="screenshots"):
     # Create directory if it doesn't exist
@@ -10,9 +12,19 @@ def take_screenshot(save_dir="screenshots"):
     filename = f"screenshot_{timestamp}.png"
     filepath = os.path.join(save_dir, filename)
     # Take screenshot
+    #time.sleep(5)
     screenshot = pyautogui.screenshot()
     screenshot.save(filepath)
+    screenshot.show()
     print(f"Screenshot saved to {filepath}")
 
-if __name__ == "__main__":
-    take_screenshot()
+root = tk.Tk()
+root.title("Screenshot")
+frame = tk.Frame(root)
+frame.pack()
+button = tk.Button(frame, text="Take Screenshot", command=take_screenshot)
+button.pack(side=tk.LEFT)
+close = tk.Button(frame, text="QUIT", command=root.quit)
+close.pack(side=tk.LEFT)
+root.mainloop()
+
