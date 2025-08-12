@@ -15,16 +15,26 @@ def take_screenshot(save_dir="screenshots"):
     #time.sleep(5)
     screenshot = pyautogui.screenshot()
     screenshot.save(filepath)
-    screenshot.show()
+    #screenshot.show()
     print(f"Screenshot saved to {filepath}")
+    return filepath
+
+def on_screenshot():
+    filepath = take_screenshot()
+    img = tk.PhotoImage(file=filepath)
+    label.config(image=img)
+    label.image = img  # garder une référence pour éviter le garbage collection
 
 root = tk.Tk()
 root.title("Screenshot")
 frame = tk.Frame(root)
 frame.pack()
-button = tk.Button(frame, text="Take Screenshot", command=take_screenshot)
+button = tk.Button(frame, text="Take Screenshot", command=on_screenshot)
 button.pack(side=tk.LEFT)
 close = tk.Button(frame, text="QUIT", command=root.quit)
 close.pack(side=tk.LEFT)
-root.mainloop()
 
+label = tk.Label(root)
+label.pack()
+
+root.mainloop()
